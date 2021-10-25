@@ -1,10 +1,19 @@
 const router = require("express").Router();
-const Workout = require("../../models/workout");
+const { Workout } = require("../../models");
 
 // Get all workouts from the database
 router.get("/", (req, res) => {
   Workout.find({})
     .then((data) => {
+      data.forEach(workout => {
+        let totalDuration = 0;
+
+        workout.exercises.forEach(exercise => {
+          totalDuration += exercise.duration;
+        })
+
+        workout.totalDuration = totalDuration
+      });
       res.status(200).json(data);
     })
     .catch((err) => {
@@ -16,7 +25,7 @@ router.get("/", (req, res) => {
 router.post("/", ({ body }, res) => {
   Workout.create(body)
     .then((data) => {
-      res.status(200).json({ message: "Workout created", data });
+      res.status(200).json(data);
     })
     .catch((err) => {
       res.status(500).json(err);
@@ -25,9 +34,9 @@ router.post("/", ({ body }, res) => {
 
 // Update a workout
 router.put("/:id", ({ body, params }, res) => {
-  Workout.updateOne({_id: params.id}, body)
+  Workout.updateOne({_id: params.id}, {$push: {exercises: body}})
     .then((data) => {
-      res.status(200).json({ message: "Workout updated", data });
+      res.status(200).json(data);
     })
     .catch((err) => {
       res.status(500).json(err);
@@ -35,6 +44,14 @@ router.put("/:id", ({ body, params }, res) => {
 });
 
 // Gets workouts within a range
-router.get("/range", (req, res) => {});
+router.get("/range", (req, res) => {
+  Workout.find({})
+    .then((data) => {
+      res.status(200).json(data);
+    })
+    .catch((err) => {
+      res.status(500).json(err);
+    });
+});
 
 module.exports = router;
