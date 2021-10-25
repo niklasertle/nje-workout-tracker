@@ -47,6 +47,16 @@ router.put("/:id", ({ body, params }, res) => {
 router.get("/range", (req, res) => {
   Workout.find({})
     .then((data) => {
+      data.forEach(workout => {
+        let totalDuration = 0;
+
+        workout.exercises.forEach(exercise => {
+          totalDuration += exercise.duration;
+        })
+
+        workout.totalDuration = totalDuration
+      });
+
       res.status(200).json(data);
     })
     .catch((err) => {
