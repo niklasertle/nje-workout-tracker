@@ -1,4 +1,4 @@
-# Tech Blog
+# Workout Tracker
 
 # Table of Contents
 
