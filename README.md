@@ -26,8 +26,8 @@ When ready use **'npm start'** into the command line to run.
 
 ## Links
 
-![Screenshot of App]()
-[Walkthrough Video]() <br>
+![Screenshot of App](./assets/workouttracker-screenshot.jpg)
+[Walkthrough Video](https://youtu.be/oodqfjc33yU) <br>
 [Deployed App]() <br>
 [GitHub](https://github.com/niklasertle/workout-tracker)
 
