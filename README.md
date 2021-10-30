@@ -28,7 +28,7 @@ When ready use **'npm start'** into the command line to run.
 
 ![Screenshot of App](./assets/workouttracker-screenshot.jpg)
 [Walkthrough Video](https://youtu.be/oodqfjc33yU) <br>
-[Deployed App]() <br>
+[Deployed App](https://whispering-citadel-87887.herokuapp.com/) <br>
 [GitHub](https://github.com/niklasertle/workout-tracker)
 
 ## Contact
